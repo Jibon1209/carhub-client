@@ -1,10 +1,32 @@
 import { Link, NavLink } from "react-router-dom"
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import logo from '../../assets/logo.svg';
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const NavBar = () => {
     const [open, setOpen] = useState(false);
+    const { user, logOut } = useContext(AuthContext);
+    const handleSignOut = () => {
+        logOut()
+            .then(() => {
+                Swal.fire({
+                    title: 'success!',
+                    text: 'Sign out successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                  })
+            })
+            .catch((error) => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Error sign Out: ' + error.message,
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                  })
+            })
+    }
 
     const navLinks = <>
         <li><NavLink to='/' style={({ isActive }) => ({
@@ -28,18 +50,28 @@ const NavBar = () => {
                     <img className="h-8 w-[118px] mr-3" src={logo} alt="Site Logo" />
                 </Link>
                 <div className="flex items-center md:order-2">
+                   {
+                    user &&
                     <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div className="w-8 rounded-full">
-                                <img src={logo} />
-                            </div>
-                        </label>
-                        <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                            <li>Profile</li>
-                            <li>Settings</li>
-                            <li>Logout</li>
-                        </ul>
-                    </div>
+                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                        <div className="w-8 rounded-full">                              
+                                <img src={user?.photoURL} />
+                        </div>
+                    </label>
+                    <ul tabIndex={0} className="mt-3 z-[1] p-3  menu menu-sm dropdown-content bg-gray-200 rounded-xl">
+                        <li className="text-[#0000ff]">{user?.displayName}</li>
+                        <li className="text-[#0000ff]">{user?.email}</li>
+                    </ul>
+                </div>
+                   }
+                    {
+                    user ?
+                        <button onClick={handleSignOut} className=" text-black font-bold hover:text-[#0000ff] ">Log Out</button>
+                        :
+                        <Link to='/signin'>
+                            <button className=" text-black font-bold hover:text-[#0000ff] ">Sign In</button>
+                        </Link>
+                }
                     <div className="dropdown">
                         <div className=" md:hidden btn btn-ghost " onClick={() => setOpen(!open)}>
                             {
