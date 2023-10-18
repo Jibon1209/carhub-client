@@ -30,24 +30,24 @@ const NavBar = () => {
 
     const navLinks = <>
         <li><NavLink to='/' style={({ isActive }) => ({
-            color: isActive ? "#0000ff" : "#110c01",
+            color: isActive ? "#0000ff" : "",
             background: 'none',
         })}>Home</NavLink></li>
         <li><NavLink to='/addproduct' style={({ isActive }) => ({
-            color: isActive ? "#0000ff" : "#110c01",
+            color: isActive ? "#0000ff" : "",
             background: 'none',
         })}>Add Product</NavLink></li>
         <li><NavLink to='/mycart' style={({ isActive }) => ({
-            color: isActive ? "#0000ff" : "#110c01",
+            color: isActive ? "#0000ff" : "",
             background: 'none',
         })}>My Cart</NavLink></li>
     </>
     return (
 
-        <nav className="bg-white border-gray-200 dark:bg-gray-900">
+        <nav className=" border-gray-200">
             <div className="flex flex-wrap items-center justify-between p-4">
                 <Link to='/' className="flex items-center">
-                    <img className="h-8 w-[118px] mr-3" src={logo} alt="Site Logo" />
+                    <img className="h-8 w-[118px] mr-3 " src={logo} alt="Site Logo" />
                 </Link>
                 <div className="flex items-center md:order-2">
                    {
@@ -66,10 +66,10 @@ const NavBar = () => {
                    }
                     {
                     user ?
-                        <button onClick={handleSignOut} className=" text-black font-bold hover:text-[#0000ff] ">Log Out</button>
+                        <button onClick={handleSignOut} className="  font-bold hover:text-[#0000ff] ">Log Out</button>
                         :
                         <Link to='/signin'>
-                            <button className=" text-black font-bold hover:text-[#0000ff] ">Sign In</button>
+                            <button className="  font-bold hover:text-[#0000ff] ">Sign In</button>
                         </Link>
                 }
                     <div className="dropdown">
@@ -91,7 +91,7 @@ const NavBar = () => {
                 </div>
             </div>            
         </nav>
-
+            
     )
 }
 

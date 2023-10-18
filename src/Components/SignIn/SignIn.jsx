@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { BASE_URL } from "../../baseurl";
 
 const SignIn = () => {
     const { signIn,googleSignIn } = useContext(AuthContext);
@@ -21,7 +22,7 @@ const SignIn = () => {
                     email,
                     lastLoggedAt: result.user.metadata?.lastSignInTime
                 }
-                fetch('http://localhost:5000/users',{
+                fetch(`${BASE_URL}/users`,{
                     method: 'PATCH',
                     headers: {
                         'content-type' : 'application/json'
@@ -70,7 +71,7 @@ const SignIn = () => {
                 const photo = result.user?.photoURL
                 const createAt = result.user.metadata?.creationTime;
                 const userinfo = { name, email, photo, createdAt: createAt };
-                fetch('http://localhost:5000/users', {
+                fetch(`${BASE_URL}/users`, {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -102,8 +103,8 @@ const SignIn = () => {
             })
     }
     return (
-        <div className="w-full min-h-screen flex justify-center items-center bg-white">
-            <div className="relative w-[380px] h-[420px] bg-white rounded-lg shadow-xl overflow-hidden">
+        <div className="w-full min-h-screen flex justify-center items-center ">
+            <div className="relative w-[380px] h-[420px] rounded-lg shadow-xl overflow-hidden">
                 <div className=" rounded-lg z-10 p-5">
                     <form onSubmit={handleSignIn}>
                         <h2 className="text-4xl font-bold text-center mb-6">Sign In</h2>
