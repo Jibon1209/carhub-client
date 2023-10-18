@@ -9,6 +9,7 @@ import SignUp from "../Components/SignUp/SignUp";
 import PrivetRoute from "./PrivetRoute";
 import { BASE_URL } from "../baseurl";
 import BrandDetails from "../Components/Brands/BrandDetails";
+import UpdateProduct from "../Components/AddProduct/UpdateProduct";
 
 const router = createBrowserRouter([
     {
@@ -38,29 +39,16 @@ const router = createBrowserRouter([
           element: <SignUp/>,
       },
       {
-          path: '/brandDetails/:brnd',
+          path: '/brandDetails/:id',
           element: <BrandDetails></BrandDetails>,
-          loader: ({ params })=> fetch(`${BASE_URL}/products/${params.brnd}`)
+          loader: ({ params })=> fetch(`${BASE_URL}/products/${params.id}`)
       },
-        // {
-        //     path: '/service/:id',
-        //     element: <PrivetRoute><ServiceDetails/></PrivetRoute>,
-        //     loader: ()=> fetch('/services.json'),
-        // },
-        // {
-        //     path: '/venue/:id',
-        //     element: <PrivetRoute><VenueDetails/></PrivetRoute>,
-        //     loader: ()=> fetch('/venue.json'),
-        // },
-        // {
-        //     path: '/photoGrapDetails/:id',
-        //     element: <PrivetRoute><PhotoGrapDetails/></PrivetRoute>,
-        //     loader: ()=> fetch('/photography.json'),
-        // },
-        // {
-        //     path: '/aboutus',
-        //     element: <AboutUs/>
-        // },
+      {
+          path: '/updateproduct/:id',
+          element: <PrivetRoute><UpdateProduct></UpdateProduct></PrivetRoute>,
+          loader: ({ params }) => fetch(`${BASE_URL}/products/${params.id}`)
+      },
+        
         
       ]
     },

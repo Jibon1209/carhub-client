@@ -9,10 +9,10 @@ const Brands = () => {
         }
         return acc;
     }, {});
-    
+
     const uniqueBrandData = Object.values(uniqueBrands);
-  return (
-    <div className="mt-20">
+    return (
+        <div className="mt-20">
             <h1 className="text-3xl px-4 md:text-5xl font-bold  text-center">Brand</h1>
             <div className="px-4 grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
                 {
@@ -20,7 +20,7 @@ const Brands = () => {
                 }
             </div>
         </div>
-  )
+    )
 }
 
 export default Brands
