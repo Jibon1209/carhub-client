@@ -13,7 +13,7 @@ const MyCart = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto mt-20">
         <table className="table  ">
           <thead>
             <tr>

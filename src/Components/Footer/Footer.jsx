@@ -4,7 +4,7 @@ import logo from '../../assets/logo.svg';
 const Footer = () => {
     return (
 
-        <footer className="m-4 relative">
+        <footer className="mt-20 relative">
             <div className="w-full p-4 md:py-8">
                 <div className="sm:flex sm:items-center sm:justify-between">
                 <Link to='/' className="flex items-center">
