@@ -1,11 +1,13 @@
 import Swal from "sweetalert2";
 import NavBar from "../NavBar/NavBar"
 import { BASE_URL } from "../../baseurl";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 
 const UpdateProduct = () => {
     const product = useLoaderData();
     const {_id,brand,image,name,price,rating,type,description} = product;
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const handleUpdateProduct = (e) => {
         e.preventDefault();
@@ -37,7 +39,7 @@ const UpdateProduct = () => {
                     confirmButtonText: 'Ok'
                   })
             }
-
+            navigate(location?.state ? location.state : `/brandDetails/${_id}`);
         })
     }
     return (
