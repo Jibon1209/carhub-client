@@ -10,6 +10,7 @@ import PrivetRoute from "./PrivetRoute";
 import { BASE_URL } from "../baseurl";
 import BrandDetails from "../Components/Brands/BrandDetails";
 import UpdateProduct from "../Components/AddProduct/UpdateProduct";
+import ProductDetails from "../Components/AddProduct/ProductDetails";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
         {
             path: '/mycart',
             element: <PrivetRoute><MyCart/></PrivetRoute>,
+            loader: ()=> fetch(`${BASE_URL}/carts`)
         },
         {
           path: '/signin',
@@ -42,6 +44,11 @@ const router = createBrowserRouter([
           path: '/brandDetails/:id',
           element: <BrandDetails></BrandDetails>,
           loader: ({ params })=> fetch(`${BASE_URL}/products/${params.id}`)
+      },
+      {
+          path: '/productdetails/:id',
+          element: <PrivetRoute><ProductDetails></ProductDetails></PrivetRoute>,
+          loader: ({ params }) => fetch(`${BASE_URL}/products/${params.id}`)
       },
       {
           path: '/updateproduct/:id',

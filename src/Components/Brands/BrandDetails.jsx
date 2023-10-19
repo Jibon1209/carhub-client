@@ -14,7 +14,6 @@ import { BASE_URL } from "../../baseurl";
 const BrandDetails = () => {
     const {brand} = useLoaderData();
     const [brands, setBrands] = useState([]);
-    console.log(brand)
     
 
     useEffect(()=>{
@@ -23,7 +22,6 @@ const BrandDetails = () => {
         .then(data => {
             const remaining = data.filter(br => br.brand === brand);
             setBrands(remaining);
-            console.log(brands);
         })
     },[])
   return (

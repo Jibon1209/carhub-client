@@ -37,9 +37,7 @@ const AddProduct = () => {
             confirmButtonText: 'Ok'
           })
           resetForm();
-        }       
-        
-
+        } 
       })
   }
   return (

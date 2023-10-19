@@ -7,10 +7,6 @@ const UpdateProduct = () => {
     const product = useLoaderData();
     const {_id,brand,image,name,price,rating,type,description} = product;
 
-    const resetForm = () => {
-        document.getElementById('productForm').reset();
-      };
-
     const handleUpdateProduct = (e) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
@@ -40,7 +36,6 @@ const UpdateProduct = () => {
                     icon: 'success',
                     confirmButtonText: 'Ok'
                   })
-                  resetForm();
             }
 
         })
@@ -49,7 +44,7 @@ const UpdateProduct = () => {
         <div>
             <NavBar></NavBar>
             <div className="mt-20 px-4">
-                <form onSubmit={handleUpdateProduct} id="productForm">
+                <form onSubmit={handleUpdateProduct} >
                     <h2 className="text-4xl text-center font-bold mb-10">Update Product</h2>
                     <div className="md:flex mb-8">
                         <div className="form-control md:w-1/2 md:mr-4">
