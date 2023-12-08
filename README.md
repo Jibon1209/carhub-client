@@ -3,7 +3,7 @@
 Welcome to CarHub, your one-stop destination for all things automotive. This repository contains the client-side code for our brand-based website.
 
 # website Live Link: (https://carhub-client-c9e02.web.app)
-# Server site Live Link: (https://carhub-server1-production.up.railway.app)
+# Server site Live Link: (https://carhub-server-two.vercel.app)
 
 # Project Overview
 
