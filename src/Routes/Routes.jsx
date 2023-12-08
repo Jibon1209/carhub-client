@@ -13,51 +13,65 @@ import UpdateProduct from "../Components/AddProduct/UpdateProduct";
 import ProductDetails from "../Components/AddProduct/ProductDetails";
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Root/>,
-      errorElement: <NotFound/>,
-      children:[
-        {
-            path: '/',
-            element: <Home/>,
-            loader: ()=> fetch(`${BASE_URL}/products`)
-        },
-        {
-            path: '/addproduct',
-            element: <PrivetRoute><AddProduct/></PrivetRoute>,
-        },
-        {
-            path: '/mycart',
-            element: <PrivetRoute><MyCart/></PrivetRoute>,
-            loader: ()=> fetch(`${BASE_URL}/carts`)
-        },
-        {
-          path: '/signin',
-          element: <SignIn/>,
+  {
+    path: "/",
+    element: <Root />,
+    //errorElement: <NotFound/>,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+        loader: () => fetch(`${BASE_URL}/products`),
       },
       {
-          path: '/signup',
-          element: <SignUp/>,
+        path: "/addproduct",
+        element: (
+          <PrivetRoute>
+            <AddProduct />
+          </PrivetRoute>
+        ),
       },
       {
-          path: '/brandDetails/:id',
-          element: <BrandDetails></BrandDetails>,
-          loader: ({ params })=> fetch(`${BASE_URL}/products/${params.id}`)
+        path: "/mycart",
+        element: (
+          <PrivetRoute>
+            <MyCart />
+          </PrivetRoute>
+        ),
+        loader: () => fetch(`${BASE_URL}/carts`),
       },
       {
-          path: '/productdetails/:id',
-          element: <PrivetRoute><ProductDetails></ProductDetails></PrivetRoute>,
-          loader: ({ params }) => fetch(`${BASE_URL}/products/${params.id}`)
+        path: "/signin",
+        element: <SignIn />,
       },
       {
-          path: '/updateproduct/:id',
-          element: <PrivetRoute><UpdateProduct></UpdateProduct></PrivetRoute>,
-          loader: ({ params }) => fetch(`${BASE_URL}/products/${params.id}`)
+        path: "/signup",
+        element: <SignUp />,
       },
-        
-        
-      ]
-    },
-  ]);
-  export default router;
+      {
+        path: "/brandDetails/:id",
+        element: <BrandDetails></BrandDetails>,
+        loader: ({ params }) => fetch(`${BASE_URL}/products/${params.id}`),
+      },
+      {
+        path: "/productdetails/:id",
+        element: (
+          <PrivetRoute>
+            <ProductDetails></ProductDetails>
+          </PrivetRoute>
+        ),
+        loader: ({ params }) => fetch(`${BASE_URL}/products/${params.id}`),
+      },
+      {
+        path: "/updateproduct/:id",
+        element: (
+          <PrivetRoute>
+            <UpdateProduct></UpdateProduct>
+          </PrivetRoute>
+        ),
+        loader: ({ params }) => fetch(`${BASE_URL}/products/${params.id}`),
+      },
+    ],
+  },
+]);
+export default router;
